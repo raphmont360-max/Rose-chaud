@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 255 255 255;
+  --foreground: 0 0 0;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: #ff5c84;
+  color: #ffffff;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-16;
+  }
+
+  /* ---- Boutons ---- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-all duration-300 hover:bg-rose-400 hover:text-ink-900 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:ring-offset-2 focus:ring-offset-white;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink-900 bg-transparent px-8 py-4 text-[11px] font-medium uppercase tracking-[0.22em] text-ink-900 transition-all duration-300 hover:bg-ink-900 hover:text-white;
+  }
+
+  .btn-rose {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-rose-400 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.22em] text-ink-900 transition-all duration-300 hover:bg-ink-900 hover:text-white;
+  }
+
+  /* ---- Typo ---- */
+  .eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.32em] text-rose-500;
+  }
+
+  .heading-hero {
+    @apply font-display font-light leading-[0.95] tracking-[-0.03em];
+    font-size: clamp(3.5rem, 11vw, 11rem);
+  }
+
+  .heading-display {
+    @apply font-display font-light leading-[0.95] tracking-[-0.025em];
+    font-size: clamp(2.75rem, 7vw, 6rem);
+  }
+
+  .heading-section {
+    @apply font-display font-light leading-[1] tracking-[-0.02em];
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+  }
+
+  .lead {
+    @apply text-base leading-relaxed text-ink-400 sm:text-lg;
+  }
+
+  /* ---- Décorations ---- */
+  .rule-rose {
+    @apply h-px w-12 bg-rose-400;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink-900/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1.5px currentColor;
+    color: transparent;
+  }
+
+  .text-stroke-thin {
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent;
+  }
+
+  /* Hover reveal pour les lignes d'index (répertoire / témoignages) */
+  .row-hover {
+    @apply relative;
+  }
+  .row-hover::before {
+    content: "";
+    @apply absolute inset-y-0 left-0 w-0 bg-rose-400 transition-all duration-500;
+  }
+  .row-hover:hover::before {
+    @apply w-full;
+  }
+  .row-hover > * {
+    @apply relative z-10;
+  }
+}
