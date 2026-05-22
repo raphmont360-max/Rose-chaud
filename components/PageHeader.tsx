@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import RoseGlowBackdrop from "@/components/RoseGlowBackdrop";
 
 type PageHeaderProps = {
   eyebrow: string;
@@ -13,16 +14,9 @@ export default function PageHeader({
 }: PageHeaderProps) {
   return (
     <section className="relative overflow-hidden bg-ink-900 pt-24 pb-28 text-white sm:pt-32 sm:pb-36">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-rose-400/20 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-20 bottom-0 h-[400px] w-[400px] rounded-full bg-rose-400/10 blur-3xl"
-      />
+      <RoseGlowBackdrop />
 
-      <div className="container-page relative">
+      <div className="container-page relative z-10">
         <div className="flex items-center gap-4 animate-fade-in">
           <span className="rule-rose !w-16" />
           <p className="eyebrow">{eyebrow}</p>

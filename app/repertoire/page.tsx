@@ -25,7 +25,6 @@ export default function RepertoirePage() {
       <PageHeader
         eyebrow="Répertoire"
         title="Quelques titres qu'on adore jouer."
-        description="Pour vos mariages et vos fêtes, voici un aperçu de classiques qu'on reprend souvent — arrangés et joués 100 % en live."
       />
 
       <Section>

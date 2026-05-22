@@ -5,10 +5,12 @@ import AvailabilityCalendar from "@/components/AvailabilityCalendar";
 
 type TarifsAvailabilityProps = {
   initialBookedDates: string[];
+  onDark?: boolean;
 };
 
 export default function TarifsAvailability({
   initialBookedDates,
+  onDark = false,
 }: TarifsAvailabilityProps) {
   const [bookedDates, setBookedDates] = useState(initialBookedDates);
 
@@ -37,5 +39,5 @@ export default function TarifsAvailability({
     };
   }, []);
 
-  return <AvailabilityCalendar bookedDates={bookedDates} />;
+  return <AvailabilityCalendar bookedDates={bookedDates} onDark={onDark} />;
 }

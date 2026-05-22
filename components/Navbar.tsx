@@ -64,7 +64,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-rose-300 px-6 py-3 text-[11px] font-medium uppercase tracking-[0.22em] text-ink-900 transition-all duration-300 hover:bg-white"
+            className="motion-safe:animate-shake-cta inline-flex items-center justify-center gap-2 rounded-full bg-rose-300 px-6 py-3 text-[11px] font-medium uppercase tracking-[0.22em] text-ink-900 transition-all duration-300 hover:bg-white"
           >
             Réserver
           </Link>

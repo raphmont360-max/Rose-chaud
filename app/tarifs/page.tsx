@@ -30,15 +30,21 @@ const includedServices = [
 function PriceCell({
   value,
   highlight,
+  onDark = false,
 }: {
   value: string;
   highlight?: boolean;
+  onDark?: boolean;
 }) {
   return (
     <td className="px-4 py-5 text-center sm:px-6">
       <span
         className={`font-display text-xl sm:text-2xl ${
-          highlight ? "text-rose-400" : "text-ink-900"
+          highlight
+            ? "text-rose-400"
+            : onDark
+              ? "text-white"
+              : "text-ink-900"
         }`}
       >
         {value}
@@ -59,7 +65,7 @@ export default async function TarifsPage() {
       />
 
       <Section
-        variant="dark"
+        variant="rose"
         eyebrow="Formules"
         title="Choisissez votre formule."
         description={
@@ -67,7 +73,7 @@ export default async function TarifsPage() {
             Ces tarifs pour un groupe en live ? Nos concurrents pensent
             qu&apos;on est fous. Vos invités pensent qu&apos;on est géniaux.
             <br />
-            <span className="mt-3 inline-block font-display text-xl italic text-rose-400 sm:text-2xl">
+            <span className="mt-3 inline-block font-display text-xl italic text-rose-500 sm:text-2xl">
               #RoseChaud
             </span>
           </>
@@ -80,14 +86,14 @@ export default async function TarifsPage() {
                 <div
                   key={name}
                   className={`h-[480px] animate-pulse rounded-3xl ${
-                    i === 1 ? "bg-white/20" : "bg-white/10"
+                    i === 1 ? "bg-rose-100" : "bg-bone"
                   }`}
                 />
               ))}
             </div>
           }
         >
-          <FormulesPricing onDark />
+          <FormulesPricing />
         </Suspense>
       </Section>
 
@@ -96,11 +102,13 @@ export default async function TarifsPage() {
           <p className="eyebrow">Liste tarifaire</p>
           <h2 className="heading-section mt-4">Détail des options</h2>
 
-          <div className="mt-12 overflow-x-auto rounded-3xl border border-ink-900/10">
-            <table className="w-full min-w-[640px] border-collapse text-left">
+          <div className="mt-12 overflow-x-auto rounded-3xl border border-ink-900/10 bg-bone">
+            <table className="w-full min-w-[640px] border-collapse bg-bone text-left">
               <thead>
                 <tr className="border-b border-ink-900/10 bg-bone">
-                  <th className="px-4 py-5 sm:px-6" />
+                  <th className="px-4 py-5 font-display text-lg italic text-ink-900 sm:px-6 sm:text-xl">
+                    Heures
+                  </th>
                   {liveColumns.map((col) => (
                     <th
                       key={col}
@@ -112,9 +120,9 @@ export default async function TarifsPage() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-ink-900/10">
-                  <th className="px-4 py-5 text-left font-display text-xl text-ink-900 sm:px-6 sm:text-2xl">
-                    Heures
+                <tr>
+                  <th className="px-4 py-5 text-left text-sm text-ink-400 sm:px-6">
+                    Tarif
                   </th>
                   {livePrices.map((price) => (
                     <PriceCell key={price} value={price} highlight />
@@ -124,8 +132,8 @@ export default async function TarifsPage() {
             </table>
           </div>
 
-          <div className="mt-14 overflow-x-auto rounded-3xl border border-ink-900/10">
-            <table className="w-full min-w-[640px] border-collapse text-left">
+          <div className="mt-14 overflow-x-auto rounded-3xl border border-ink-900/10 bg-bone">
+            <table className="w-full min-w-[640px] border-collapse bg-bone text-left">
               <thead>
                 <tr className="border-b border-ink-900/10 bg-bone">
                   <th className="px-4 py-5 font-display text-lg italic text-ink-900 sm:px-6 sm:text-xl">
@@ -202,11 +210,13 @@ export default async function TarifsPage() {
       </Section>
 
       <Section
+        variant="dark"
+        glow
         eyebrow="Disponibilités"
         title="Notre agenda"
         description="Utilisez les flèches pour parcourir les mois. Les dates en rouge sont déjà réservées."
       >
-        <TarifsAvailability initialBookedDates={bookedDates} />
+        <TarifsAvailability initialBookedDates={bookedDates} onDark />
       </Section>
     </>
   );

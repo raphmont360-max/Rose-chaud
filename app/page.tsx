@@ -1,101 +1,18 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import FormulesPricing from "@/components/FormulesPricing";
-import HeroSlideshow from "@/components/HeroSlideshow";
+import HomeHeroSection from "@/components/HomeHeroSection";
 import Section from "@/components/Section";
 import TeamGallery from "@/components/TeamGallery";
 
 export default function HomePage() {
   return (
     <>
-      {/* ════════════════ HERO ════════════════ */}
-      <section className="relative overflow-hidden bg-white pt-12 sm:pt-20">
-        <div className="container-page relative">
-          <div className="flex items-center gap-3 animate-fade-in">
-            <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-rose-400" />
-            <p className="eyebrow !text-ink-900">
-              Groupe live · Mariages — Fêtes — Cérémonies
-            </p>
-          </div>
-
-          <h1 className="heading-hero mt-8 max-w-[1200px] animate-fade-in-up">
-            Des amis
-            <br />
-            et de la musique
-            <br />
-            <span className="italic font-normal text-rose-400">
-              #rosechaud
-            </span>
-          </h1>
-
-          <div
-            className="mt-14 flex flex-col items-start justify-between gap-10 border-t border-ink-900/10 pt-10 animate-fade-in-up md:flex-row md:items-end"
-            style={{ animationDelay: "200ms", opacity: 0 }}
-          >
-            <p className="max-w-md text-base leading-relaxed text-ink-400">
-              On a 20 ans, on est huit potes musiciens et chanteuses, et on a
-              qu&apos;une envie : tout donner sur scène. Rose Chaud est né de
-              cette amitié et de cette passion dévorante pour la musique live.
-              On revisite les classiques, on met l&apos;ambiance, et on kiffe
-              autant que vous. Promis, votre soirée, on la rend inoubliable.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <Link href="/contact" className="btn-rose">
-                Réserver une date
-                <span aria-hidden>→</span>
-              </Link>
-              <Link href="/repertoire" className="btn-secondary">
-                Voir le répertoire
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Bande d'images / cartes décoratives */}
-        <div className="container-page mt-20">
-          <div className="grid grid-cols-12 gap-4 sm:gap-6">
-            <div className="col-span-12 sm:col-span-7">
-              <HeroSlideshow />
-            </div>
-
-            <div className="col-span-12 sm:col-span-5 flex flex-col gap-4 sm:gap-6">
-              <div className="relative flex-1 overflow-hidden rounded-3xl bg-rose-400 p-8">
-                <div className="flex h-full flex-col justify-between">
-                  <p className="eyebrow !text-ink-900">Prochaine date</p>
-                  <div>
-                    <p className="font-display text-5xl text-ink-900">14.06</p>
-                    <p className="mt-1 text-sm text-ink-900/70">
-                      Domaine de Roussas · Drôme
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative flex-1 overflow-hidden rounded-3xl border border-ink-900/10 bg-bone p-8">
-                <p className="eyebrow">Note moyenne</p>
-                <div className="mt-3 flex items-baseline gap-2">
-                  <p className="font-display text-5xl text-ink-900">4,9</p>
-                  <p className="text-ink-400">/ 5</p>
-                </div>
-                <div className="mt-2 flex gap-0.5 text-rose-400">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="mt-3 text-xs text-ink-400">87 avis vérifiés</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeHeroSection />
 
       {/* ════════════════ L'ÉQUIPE — 8 photos ════════════════ */}
       <Section
         variant="dark"
-        glow
         eyebrow="La team"
         title="On est qui juste ?"
       >
@@ -140,6 +57,7 @@ export default function HomePage() {
       {/* ════════════════ FORMULES ════════════════ */}
       <Section
         variant="dark"
+        glow
         eyebrow="Formules"
         title="Trois manières de tomber amoureux."
         description={

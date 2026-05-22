@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import RoseGlowBackdrop from "@/components/RoseGlowBackdrop";
 
 type SectionProps = {
   eyebrow?: string;
@@ -8,7 +9,7 @@ type SectionProps = {
   children: ReactNode;
   className?: string;
   id?: string;
-  variant?: "light" | "dark";
+  variant?: "light" | "dark" | "rose";
   glow?: boolean;
 };
 
@@ -27,23 +28,14 @@ export default function Section({
   const bg =
     variant === "dark"
       ? "bg-ink-900 text-white"
-      : "bg-white text-ink-900";
+      : variant === "rose"
+        ? "bg-rose-100 text-ink-900"
+        : "bg-white text-ink-900";
 
   return (
     <section id={id} className={`relative overflow-hidden py-24 sm:py-32 ${bg} ${className}`}>
-      {variant === "dark" && glow && (
-        <>
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-rose-400/20 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full bg-rose-400/10 blur-3xl"
-          />
-        </>
-      )}
-      <div className="container-page relative">
+      {variant === "dark" && glow && <RoseGlowBackdrop />}
+      <div className="container-page relative z-10">
         {(eyebrow || title || description) && (
           <div className={`max-w-3xl ${alignClass}`}>
             {eyebrow && <p className="eyebrow">{eyebrow}</p>}

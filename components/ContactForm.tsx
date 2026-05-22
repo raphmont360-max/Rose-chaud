@@ -58,11 +58,31 @@ export default function ContactForm({ defaultFormula }: ContactFormProps) {
     setErrors({});
     setStatus("submitting");
 
-    // Simulation d'envoi — à brancher sur une API route ou un service tiers.
-    await new Promise((r) => setTimeout(r, 900));
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name")?.toString().trim(),
+          email,
+          phone: data.get("phone")?.toString().trim(),
+          date: data.get("date")?.toString().trim(),
+          place: data.get("place")?.toString().trim(),
+          formula: data.get("formula")?.toString().trim(),
+          message: data.get("message")?.toString().trim(),
+        }),
+      });
 
-    setStatus("success");
-    form.reset();
+      if (!res.ok) {
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
   }
 
   if (status === "success") {
@@ -97,6 +117,21 @@ export default function ContactForm({ defaultFormula }: ContactFormProps) {
       noValidate
       className="space-y-8 rounded-3xl border border-ink-900/10 bg-white p-8 sm:p-10"
     >
+      {status === "error" && (
+        <p
+          role="alert"
+          className="rounded-2xl border border-rose-500/30 bg-rose-50 px-5 py-4 text-sm text-ink-900"
+        >
+          L&apos;envoi a échoué. Réessayez dans un instant ou écrivez-nous à{" "}
+          <a
+            href="mailto:contact.rosechaud@gmail.com"
+            className="font-medium text-rose-600 underline"
+          >
+            contact.rosechaud@gmail.com
+          </a>
+          .
+        </p>
+      )}
       <div className="grid gap-8 sm:grid-cols-2">
         <Field label="Nom complet" name="name" error={errors.name} required />
         <Field

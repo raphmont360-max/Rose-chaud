@@ -34,25 +34,6 @@ const infos = [
   },
 ];
 
-const faqs = [
-  {
-    q: "Combien de temps à l'avance faut-il réserver ?",
-    a: "Nous conseillons de réserver 8 à 12 mois à l'avance, surtout pour les samedis de mai à septembre. Mais n'hésitez jamais à nous écrire — il arrive qu'on ait une date libre de dernière minute.",
-  },
-  {
-    q: "Vos déplacements sont-ils inclus ?",
-    a: "Nous intervenons en Belgique, en France et partout en Europe. Les frais de déplacement et d'hébergement éventuels sont chiffrés en transparence dans le devis selon le lieu.",
-  },
-  {
-    q: "Peut-on vous voir en live avant de réserver ?",
-    a: "Avec plaisir ! Nous organisons régulièrement des showcases ouverts aux futurs mariés. Demandez-nous les dates par mail.",
-  },
-  {
-    q: "Que se passe-t-il en cas de pluie ?",
-    a: "Notre matériel est adapté aux extérieurs. En cas d'intempéries, on s'adapte avec vous : repli sous chapiteau, décalage horaire... la souplesse fait partie de notre ADN.",
-  },
-];
-
 const FORMULES = ["Concert", "Signature", "Grand Bal"] as const;
 
 function formuleFromSearch(
@@ -127,47 +108,6 @@ export default function ContactPage({
               </p>
             </div>
           </aside>
-        </div>
-      </section>
-
-      <section className="bg-bone py-24 sm:py-32">
-        <div className="container-page">
-          <div className="max-w-3xl">
-            <p className="eyebrow">FAQ</p>
-            <h2 className="heading-display mt-5 text-balance">
-              Ce qu&apos;on nous demande{" "}
-              <span className="italic font-normal text-rose-500">souvent</span>.
-            </h2>
-          </div>
-
-          <div className="mt-16 divide-y divide-ink-900/10 border-y border-ink-900/10">
-            {faqs.map((item, i) => (
-              <details
-                key={i}
-                className="group py-6 transition-colors"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6">
-                  <div className="flex items-center gap-6">
-                    <span className="font-display text-2xl text-ink-200 transition-colors group-open:text-rose-400">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="font-display text-2xl text-ink-900 transition-colors sm:text-3xl">
-                      {item.q}
-                    </span>
-                  </div>
-                  <span className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-ink-900/15 text-ink-900 transition-all group-open:rotate-45 group-open:border-rose-400 group-open:bg-rose-400">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                  </span>
-                </summary>
-                <div className="mt-5 max-w-3xl pl-16 text-base leading-relaxed text-ink-400">
-                  {item.a}
-                </div>
-              </details>
-            ))}
-          </div>
         </div>
       </section>
     </>

@@ -108,7 +108,6 @@ export default function HeroSlideshow() {
         );
       })}
 
-      {/* Contenu texte */}
       <div className="relative z-10 flex h-full flex-col justify-end p-8 sm:p-10">
         <div className="transition-opacity duration-500">
           <span className="badge !border-white/30 !text-white">

@@ -84,15 +84,22 @@ tsconfig.json
 
 ---
 
-## Déploiement
+## Mise en ligne (Vercel — recommandé)
 
-Le projet est prêt pour un déploiement instantané sur **Vercel** :
+1. Créez un dépôt GitHub et poussez ce projet (`git` est déjà initialisé localement).
+2. Sur [vercel.com](https://vercel.com) → **Add New Project** → importez le dépôt.
+3. Nom du projet : `rose-chaud` → URL : `https://rose-chaud.vercel.app`
+4. **Environment Variables** (Production) :
+   - `ADMIN_SECRET` = même mot de passe que dans `.env.local`
+5. Déployez.
+
+**Nom de domaine personnalisé** (ex. `rosechaud.fr`) : Vercel → Project → **Domains** → ajoutez le domaine acheté chez OVH, Gandi, etc.
+
+**Agenda / témoignages soumis** : les fichiers JSON ne sont pas persistants sur Vercel après redéploiement. L’agenda admin fonctionne en local ; pour la prod durable, prévoir une base (Supabase, Vercel KV…).
 
 ```bash
 npx vercel
 ```
-
-Ou n'importe quelle plateforme supportant Next.js (Netlify, Cloudflare Pages, etc.).
 
 ---
 
