@@ -26,6 +26,7 @@ export default function ContactForm({ defaultFormula }: ContactFormProps) {
       : "";
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -56,6 +57,7 @@ export default function ContactForm({ defaultFormula }: ContactFormProps) {
     }
 
     setErrors({});
+    setSubmitError(null);
     setStatus("submitting");
 
     try {
@@ -74,6 +76,13 @@ export default function ContactForm({ defaultFormula }: ContactFormProps) {
       });
 
       if (!res.ok) {
+        const payload = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        setSubmitError(
+          payload?.error ??
+            "L'envoi a échoué. Réessayez ou écrivez-nous par email."
+        );
         setStatus("error");
         return;
       }
@@ -97,8 +106,8 @@ export default function ContactForm({ defaultFormula }: ContactFormProps) {
           Message reçu.
         </h3>
         <p className="mx-auto mt-5 max-w-md text-white/70">
-          Merci pour votre message. On revient vers vous sous 48 h avec une
-          proposition personnalisée — préparez vos meilleurs morceaux !
+          Merci pour votre confiance. Nous revenons vers vous dans les plus
+          brefs délais !
         </p>
         <button
           type="button"
@@ -122,14 +131,13 @@ export default function ContactForm({ defaultFormula }: ContactFormProps) {
           role="alert"
           className="rounded-2xl border border-rose-500/30 bg-rose-50 px-5 py-4 text-sm text-ink-900"
         >
-          L&apos;envoi a échoué. Réessayez dans un instant ou écrivez-nous à{" "}
+          {submitError ?? "L'envoi a échoué."}{" "}
           <a
             href="mailto:contact.rosechaud@gmail.com"
             className="font-medium text-rose-600 underline"
           >
             contact.rosechaud@gmail.com
           </a>
-          .
         </p>
       )}
       <div className="grid gap-8 sm:grid-cols-2">

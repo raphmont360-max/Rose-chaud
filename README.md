@@ -91,6 +91,9 @@ tsconfig.json
 3. Nom du projet : `rose-chaud` → URL : `https://rose-chaud.vercel.app`
 4. **Environment Variables** (Production) :
    - `ADMIN_SECRET` = même mot de passe que dans `.env.local`
+   - `RESEND_API_KEY` = clé du compte Resend **contact.rosechaud@gmail.com**
+   - `RESEND_FROM` = `Rose chaud <onboarding@resend.dev>`
+   - (Les devis vont toujours sur **contact.rosechaud@gmail.com** — pas de variable à changer)
 5. Déployez.
 
 **Nom de domaine personnalisé** (ex. `rosechaud.fr`) : Vercel → Project → **Domains** → ajoutez le domaine acheté chez OVH, Gandi, etc.

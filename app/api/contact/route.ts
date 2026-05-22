@@ -1,6 +1,9 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
+/** Seule adresse qui reçoit les demandes de devis */
+const QUOTE_INBOX = "contact.rosechaud@gmail.com";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type ContactBody = {
@@ -22,15 +25,17 @@ function escapeHtml(text: string): string {
 }
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL ?? "contact.rosechaud@gmail.com";
+  const apiKey = process.env.RESEND_API_KEY?.trim();
   const from =
-    process.env.RESEND_FROM ?? "Rose chaud <onboarding@resend.dev>";
+    process.env.RESEND_FROM?.trim() ?? "Rose chaud <onboarding@resend.dev>";
 
   if (!apiKey) {
-    console.error("RESEND_API_KEY manquante");
+    console.error("RESEND_API_KEY manquante sur le serveur");
     return NextResponse.json(
-      { error: "Configuration email incomplète." },
+      {
+        error:
+          "RESEND_API_KEY n'est pas configurée sur Vercel. Ajoutez-la dans Environment Variables (Production), puis Redeploy.",
+      },
       { status: 503 }
     );
   }
@@ -86,7 +91,7 @@ export async function POST(request: Request) {
 
   const { error } = await resend.emails.send({
     from,
-    to: [to],
+    to: [QUOTE_INBOX],
     replyTo: email,
     subject: `[Rose chaud] Devis — ${name} (${date})`,
     text,
