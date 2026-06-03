@@ -89,7 +89,7 @@ export async function POST(request: Request) {
 
   const text = rows.map(([label, value]) => `${label}: ${value}`).join("\n");
 
-  const { error } = await resend.emails.send({
+  const { error: inboxError } = await resend.emails.send({
     from,
     to: [QUOTE_INBOX],
     replyTo: email,
@@ -105,12 +105,44 @@ export async function POST(request: Request) {
     `,
   });
 
-  if (error) {
-    console.error("Resend error:", error);
+  if (inboxError) {
+    console.error("Resend inbox error:", inboxError);
     return NextResponse.json(
       { error: "Impossible d'envoyer le message. Réessayez ou écrivez-nous par email." },
       { status: 502 }
     );
+  }
+
+  const confirmationText = `Bonjour ${name},
+
+Merci pour votre confiance. Nous avons bien reçu votre demande de devis pour le ${date}${place ? ` (${place})` : ""}.
+
+Nous revenons vers vous dans les plus brefs délais !
+
+À très bientôt,
+Rose chaud
+contact.rosechaud@gmail.com`;
+
+  const { error: autoReplyError } = await resend.emails.send({
+    from,
+    to: [email],
+    replyTo: QUOTE_INBOX,
+    subject: "Rose chaud — nous avons bien reçu votre demande",
+    text: confirmationText,
+    html: `
+      <div style="font-family:Georgia,serif;max-width:560px;color:#000;line-height:1.6">
+        <p style="font-size:22px;font-style:italic;margin:0 0 20px">Rose chaud</p>
+        <p>Bonjour ${escapeHtml(name)},</p>
+        <p>Merci pour votre confiance. Nous avons bien reçu votre demande de devis pour le <strong>${escapeHtml(date)}</strong>${place ? ` (${escapeHtml(place)})` : ""}.</p>
+        <p>Nous revenons vers vous dans les plus brefs délais !</p>
+        <p style="margin-top:28px">À très bientôt,<br><em>Rose chaud</em><br>
+        <a href="mailto:${QUOTE_INBOX}" style="color:#E58AAB">${QUOTE_INBOX}</a></p>
+      </div>
+    `,
+  });
+
+  if (autoReplyError) {
+    console.warn("Accusé de réception non envoyé au client:", autoReplyError.message);
   }
 
   return NextResponse.json({ ok: true });
