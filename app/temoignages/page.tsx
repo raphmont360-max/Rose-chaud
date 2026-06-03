@@ -1,28 +1,26 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
-import TemoignagesPageContent from "@/components/TemoignagesPageContent";
-import { getAllTestimonials } from "@/lib/testimonials-store";
-
-export const dynamic = "force-dynamic";
+import Section from "@/components/Section";
 
 export const metadata: Metadata = {
   title: "Témoignages",
   description:
-    "Découvrez ce que les mariés disent de Rose chaud — avis et témoignages authentiques.",
+    "Découvrez ce que les mariés disent de Rose chaud — témoignages bientôt disponibles.",
 };
 
-export default async function TemoignagesPage() {
-  const testimonials = await getAllTestimonials();
-
+export default function TemoignagesPage() {
   return (
     <>
       <PageHeader
         eyebrow="Ils nous ont fait confiance"
         title="Ils ont vu et témoigné."
-        description="Après chaque prestation, ceux qui nous ont fait confiance ont pu s'exprimer et nous donner leur retour. Lisez par vous-mêmes."
       />
 
-      <TemoignagesPageContent initialTestimonials={testimonials} />
+      <Section className="!py-20 sm:!py-28">
+        <p className="font-display text-center text-3xl italic text-ink-900 sm:text-4xl md:text-5xl">
+          Témoignages à venir
+        </p>
+      </Section>
     </>
   );
 }

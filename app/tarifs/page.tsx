@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const liveColumns = ["2 h de live", "3 h de live", "4 h de live"] as const;
-const livePrices = ["1 000 €", "1 350 €", "1 700 €"];
+const livePrices = ["1 000 €", "1 450 €", "1 900 €"];
 
 const songColumns = ["1 musique", "2 musiques", "3 musiques"] as const;
 const songPrices = ["100 €", "125 €", "150 €"];

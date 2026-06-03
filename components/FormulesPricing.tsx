@@ -18,7 +18,7 @@ const FORMULES = [
   },
   {
     name: "Signature",
-    price: "1 350 €",
+    price: "1 450 €",
     tag: "Le plus demandé",
     features: [
       "Saxophone / piano / guitare / batterie / chanteuse(s)",
@@ -30,7 +30,7 @@ const FORMULES = [
   },
   {
     name: "Grand Bal",
-    price: "1 700 €",
+    price: "1 900 €",
     tag: "L'expérience complète",
     features: [
       "Saxophone / piano / guitare / batterie / chanteuse(s)",

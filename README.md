@@ -88,9 +88,12 @@ tsconfig.json
 
 | Branche / tag | Rôle |
 |---------------|------|
-| **`main`** | Version **actuelle** du site (à déployer sur Vercel). Stable, sans vos vraies photos de mariages pour l’instant. |
-| **`develop`** | Version de **travail** : ajoutez ici photos galerie, vrais témoignages, etc. Quand c’est prêt → fusion dans `main`. |
-| **Tag `v1.0-site-actuel`** | Instantané sauvegardé de cette version (pour revenir en arrière si besoin). |
+| **`main`** | **Version en ligne / en attendant** — celle à déployer sur Vercel aujourd’hui. |
+| **`develop`** | Version de **travail** : photos galerie, vrais témoignages, diaporama hero, etc. |
+| **Tag `v1.1-site-en-attente`** | Instantané de la version « en attendant » (référence actuelle). |
+| **Tag `v1.0-site-actuel`** | Ancienne version (diaporama, témoignages placeholder). |
+
+**Contenu de `main` (version en attendant)** : hero fond rosé, « Qui sommes-nous ? », pas de bloc témoignage sur l’accueil, galerie et témoignages « à venir », tarifs Concert 1 000 € / Signature 1 450 € / Grand Bal 1 900 €.
 
 ```bash
 # Travailler sur la future version (photos, témoignages)
