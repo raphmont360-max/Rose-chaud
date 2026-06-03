@@ -84,6 +84,31 @@ tsconfig.json
 
 ---
 
+## Versions Git (site actuel vs contenu à venir)
+
+| Branche / tag | Rôle |
+|---------------|------|
+| **`main`** | Version **actuelle** du site (à déployer sur Vercel). Stable, sans vos vraies photos de mariages pour l’instant. |
+| **`develop`** | Version de **travail** : ajoutez ici photos galerie, vrais témoignages, etc. Quand c’est prêt → fusion dans `main`. |
+| **Tag `v1.0-site-actuel`** | Instantané sauvegardé de cette version (pour revenir en arrière si besoin). |
+
+```bash
+# Travailler sur la future version (photos, témoignages)
+git checkout develop
+
+# Revenir à la version « en ligne »
+git checkout main
+
+# Après vos ajouts sur develop, publier sur le site public
+git checkout main
+git merge develop
+git push origin main
+```
+
+Sur Vercel : laissez **Production** sur la branche `main`. Les pushes sur `develop` créent une **URL de prévisualisation** sans toucher au site public.
+
+---
+
 ## Mise en ligne (Vercel — recommandé)
 
 1. Créez un dépôt GitHub et poussez ce projet (`git` est déjà initialisé localement).
